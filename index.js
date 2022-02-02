@@ -42,21 +42,8 @@ const promptUser = () => {
                                 message: "Enter office number: ",
                                 name: "office"
                             }
-                        ])
-                        .then(function (res) {
-                            const officeNum = res.office;
-                            console.log(officeNum);
-                            const manager = new Manager(
-                                data.name,
-                                res.id,
-                                data.email,
-                                officeNum,
-                                "Manager"
-                            );
-                            console.log(manager);
-                            employees.push(manager);
-                        }).then(function () {
-                            addNext()
+                        ]).then(function() {
+                            addAnotherEmployee()
                         });
                     break;
                 case "Engineer":
@@ -72,11 +59,48 @@ const promptUser = () => {
                                 message: "Enter github username: ",
                                 name: "github"
                             }
-                        ])
+                        ]).then(function() {
+                            addAnotherEmployee()
+                        });                        
+                    break;
+                case "Intern":
+                    inquirer
+                        .prompt([
+                            {
+                                type: "input",
+                                message: "Enter employee ID: ",
+                                name: "id"
+                            },
+                            {
+                                type: "input",
+                                message: "Enter school: ",
+                                name: "school"
+                            }
+                        ]).then(function() {
+                            addAnotherEmployee()
+                        });
             }
         })
         .then(function () {
         });
+};
+
+const addAnotherEmployee = () => {
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "add",
+            message: "Would You Like To Add Another Employee To The Roster?",
+            choices: ["Yes", "No"]
+        }
+    ])
+    .then(function(res) {
+        if (res.add === "Yes") {
+            promptUser();
+        } else {
+            console.log("File Completed!");            
+        }
+    });
 };
 
 promptUser();
