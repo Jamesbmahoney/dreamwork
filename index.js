@@ -6,6 +6,12 @@ const Employee = require('./lib/Employee.js');
 const Engineer = require('./lib/Engineer.js');
 const Intern = require('./lib/Intern.js');
 const Manager = require('./lib/Manager');
+const generateHTML = require('./src/generateHTML.js');
+
+const employee = [];
+const engineer = [];
+const intern = [];
+const manager = [];
 
 const promptUser = () => {
     inquirer
@@ -42,8 +48,20 @@ const promptUser = () => {
                                 message: "Enter office number: ",
                                 name: "office"
                             }
-                        ]).then(function() {
-                            addAnotherEmployee()
+                        ]).then(function(resp) {
+                            const officeNum = resp.office;
+                            console.log(officeNum);
+                            const manager = new Manager(
+                                data.name,
+                                resp.id,
+                                data.email,
+                                officeNum,
+                                "Manager"
+                            );
+                            console.log(manager);
+                            employee.push(manager);                              
+                        }).then(function(){
+                            addAnotherEmployee();
                         });
                     break;
                 case "Engineer":
@@ -59,8 +77,19 @@ const promptUser = () => {
                                 message: "Enter github username: ",
                                 name: "github"
                             }
-                        ]).then(function() {
-                            addAnotherEmployee()
+                        ]).then(function(resp) {
+                            const githubName = resp.github;
+                            const engineer = new Engineer(
+                                data.name,
+                                resp.id,
+                                data.email,
+                                githubName,
+                                "Engineer"
+                            );
+                            console.log(engineer);
+                            employee.push(engineer);
+                        }).then(function(){
+                            addAnotherEmployee();
                         });                        
                     break;
                 case "Intern":
@@ -76,13 +105,23 @@ const promptUser = () => {
                                 message: "Enter school: ",
                                 name: "school"
                             }
-                        ]).then(function() {
-                            addAnotherEmployee()
+                        ]).then(function(resp) {
+                            const empSchool = resp.school;
+                            const intern = new Intern(
+                                data.name,
+                                resp.id,
+                                data.email,
+                                empSchool,
+                                "Intern"
+                            );
+                            console.log(intern);
+                            employee.push(intern);
+                        }).then(function(){
+                            addAnotherEmployee();
                         });
+                        break;
             }
-        })
-        .then(function () {
-        });
+        })        
 };
 
 const addAnotherEmployee = () => {
@@ -98,11 +137,25 @@ const addAnotherEmployee = () => {
         if (res.add === "Yes") {
             promptUser();
         } else {
-            console.log("File Completed!");            
+            console.log("File Completed!");
+            finishedCard(employee);            
         }
     });
 };
 
-promptUser();
+function finishedCard(employee){
+    console.log("Success!");
+    console.log(employee);
+    const html = generateHTML(employee);
+    console.log(html);
+    fs.writeFileSync('./src/employees.html', html, "utf-8");
+}
+
+function init(){
+    console.log('Enter New Employee Information Here:');
+    promptUser();
+}
+
+init();
 
 
