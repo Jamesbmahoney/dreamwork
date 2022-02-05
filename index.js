@@ -143,7 +143,7 @@ const addAnotherEmployee = () => {
 function finishedCard(employee){
     console.log("Success!");    
     const html = generateHTML(employee);    
-    fs.writeFileSync('./src/employees.html', html, "utf-8");
+    fs.writeFileSync('./dist/employees.html', html, "utf-8");
 }
 
 function init(){
