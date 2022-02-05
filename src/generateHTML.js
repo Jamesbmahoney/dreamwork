@@ -62,7 +62,7 @@ function createManager(d) {
       <div class="card">
       <form>			
         <div>
-          <label id="unique-id">ID:${d.id} </label>
+          <label id="unique-id">ID: ${d.id} </label>
         </div>
         <div>
         <label id=email">Email: ${d.email}</label>
@@ -95,7 +95,7 @@ function createEngineer(d) {
       <div class="card">
       <form>			
         <div>
-          <label id="unique-id">ID:${d.id} </label>
+          <label id="unique-id">ID: ${d.id} </label>
         </div>
         <div>
         <label id="email">Email: ${d.email}</label>
@@ -128,7 +128,7 @@ function createIntern(d) {
       <div class="card">
       <form>			
         <div>
-          <label id="unique-id">ID:${d.id} </label>
+          <label id="unique-id">ID: ${d.id} </label>
         </div>
         <div>
         <label id="email">Email: ${d.email}</label>
