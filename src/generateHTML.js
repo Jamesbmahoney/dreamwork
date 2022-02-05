@@ -1,5 +1,5 @@
 function generateHTML(data) {
-    return `
+  return `
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,121 +20,118 @@ function generateHTML(data) {
             Team Member Database
           </p>
         </div>
-    </header>
-    <section class="container has-background-warning-light box">
-        <p class="title"> List of Active Employees</p>
-        <div class="container">
-            <ul class="ul">
+    </header>    
+        <div class="column">
+        <p class="title"> Employee Archive</p>     
+            <ul class="ul column is-flex">
                 ${makeEmpCards(data)}
             </ul>
-        </div>
-    </section>
+        </div>    
     `;
 };
 function makeEmpCards(data) {
-    return data
-        .map(d => {
-            let newCard = d.getPosition();
-            switch (newCard) {
-                case "Manager":
-                    return createManager(d);
-                    break;
-                case "Engineer":
-                    return createEngineer(d);
-                    break;
-                case "Intern":
-                    return createIntern(d);
-                    break;
-            }
-        })
-        .join("\n");
+  return data
+    .map(d => {
+      let newCard = d.getRole();
+      switch (newCard) {
+        case "Manager":
+          return createManager(d);
+          break;
+        case "Engineer":
+          return createEngineer(d);
+          break;
+        case "Intern":
+          return createIntern(d);
+          break;
+      }
+    })
+    .join("\n");
 }
 
 function createManager(d) {
-    let managerCard =
-        `    
+  let managerCard =
+    `
+    <section class="column is-2 mx-1 has-background-warning-light box is-one-quarter">      
 <li>
-<div class="col-md-3">
+<div class="column mb-4">
     <div class="card cardbody">
       <div class="card-header has-background-info box">
              ${d.name}<br>
             <div><i class="fa fa-briefcase"></i> ${d.getRole()}</div>
             </div>
-      <div class="card-body">
+      <div class="card">
       <form>			
         <div>
-          <label id="unique-id">ID:${d.id
-        } </label>
+          <label id="unique-id">ID:${d.id} </label>
         </div>
         <div>
-        <label id=email">Email: ${d.email
-        }</label>
+        <label id=email">Email: ${d.email}</label>
         </div>
         <div>
-          <label id="office-number">Office Number: ${d.officeNum}</label>					
+          <label id="office-number">Office Number: ${d.officeNumber}</label>					
         </div>				
         </form>
       </div>
     </div>
           </div>
-          </li>   
+          </li>
+          </section>   
           `;
-    return managerCard
+  return managerCard
 
 }
 
 function createEngineer(d) {
-    let engineerCard =
-        `    
+  let engineerCard =
+    `
+    <section class="column is-2 mx-1 has-background-warning-light box">       
 <li>
-<div class="col-md-3">
-    <div class="card cardbody">
+<div class="column mb-4">
+    <div class="card">
       <div class="card-header has-background-info box">
              ${d.name}<br>
             <div><i class="fa fa-pen"></i> ${d.getRole()}</div>
             </div>
-      <div class="card-body">
+      <div class="card">
       <form>			
         <div>
-          <label id="unique-id">ID:${d.id
-        } </label>
+          <label id="unique-id">ID:${d.id} </label>
         </div>
         <div>
-        <label id="email">Email: ${d.email
-        }</label>
+        <label id="email">Email: ${d.email}</label>
         </div>
         <div>
-          <label id="github">School: ${d.githubName}</label>					
+          <label id="github">Github: ${d.github}</label>					
         </div>				
         </form>
       </div>
     </div>
           </div>
-          </li>   
+          </li>
+          </section>   
           `;
-    return engineerCard
+  return engineerCard
 
 }
 
 function createIntern(d) {
-    let internCard =
-        `    
+  let internCard =
+    `
+    <section class="column is-2 mx-1 has-background-warning-light box"> 
 <li>
-<div class="col-md-3">
-    <div class="card cardbody">
+<div class="column mb-4">
+    <div class="card">
       <div class="card-header has-background-info box">
              ${d.name}<br>
             <div><i class="fa fa-id-badge"></i> ${d.getRole()}</div>
             </div>
-      <div class="card-body">
+      <div class="card">
       <form>			
         <div>
-          <label id="unique-id">ID:${d.id
-        } </label>
+          <label id="unique-id">ID:${d.id} </label>
         </div>
         <div>
-        <label id="email">Email: ${d.email
-        }</label>
+        <label id="email">Email: ${d.email}</label>
         </div>
         <div>
           <label id="school">School: ${d.school}</label>					
@@ -143,9 +140,10 @@ function createIntern(d) {
       </div>
     </div>
           </div>
-          </li>   
+          </li>
+          </section>   
           `;
-    return internCard
+  return internCard
 }
 
 module.exports = generateHTML;

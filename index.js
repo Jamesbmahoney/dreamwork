@@ -57,8 +57,7 @@ const promptUser = () => {
                                 data.email,
                                 officeNum,
                                 "Manager"
-                            );
-                            console.log(manager);
+                            );                                                       
                             employee.push(manager);                              
                         }).then(function(){
                             addAnotherEmployee();
@@ -85,8 +84,7 @@ const promptUser = () => {
                                 data.email,
                                 githubName,
                                 "Engineer"
-                            );
-                            console.log(engineer);
+                            );                                                       
                             employee.push(engineer);
                         }).then(function(){
                             addAnotherEmployee();
@@ -113,8 +111,7 @@ const promptUser = () => {
                                 data.email,
                                 empSchool,
                                 "Intern"
-                            );
-                            console.log(intern);
+                            );                                                       
                             employee.push(intern);
                         }).then(function(){
                             addAnotherEmployee();
@@ -144,10 +141,8 @@ const addAnotherEmployee = () => {
 };
 
 function finishedCard(employee){
-    console.log("Success!");
-    console.log(employee);
-    const html = generateHTML(employee);
-    console.log(html);
+    console.log("Success!");    
+    const html = generateHTML(employee);    
     fs.writeFileSync('./src/employees.html', html, "utf-8");
 }
 
