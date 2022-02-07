@@ -16,4 +16,6 @@ https://watch.screencastify.com/v/kARsIJ0F4ngyHgcdlORj
 
 ## Demo
 
+<img src="./src/dreamwork.JPG" />
+
 ![dreamwork-gif](https://github.com/Jamesbmahoney/dreamwork/blob/main/dreamwork.gif)
